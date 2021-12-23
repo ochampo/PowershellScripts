@@ -4,36 +4,36 @@
  # $VMS = Get-SCVirtualMachine | Select -ExpandProperty VirtualNetworkAdapters | select-object Name, MACAddress  #| Where { $_.MACAddress -like "*1C:95"}+
  $NameList=’vm1’,’vm2’,’vm3’,’vm4’,’vm5’,’vm6’,’vm7’
  $MacAdr ='123','456','654','714','111','111', '12345'
- $myObject = @()
+ $vminfo = @()
  $VMs = @()
  $i = 0
 foreach($name in $NameList)
 {
  
- $myObject = [PSCustomObject]@{
+ $VMinfo = [PSCustomObject]@{
     VmName = $name
     MAC    = $MacAdr[$i]
     }
 
-$VMs += $myObject
+$VMs += $VMinfo
 $i++
 }
 ####### example of Mac issue address issue 
-$ageList = @{}
+$MacList = @{}
 
 foreach($VM in $VMs)
 {  
- if($ageList.Contains(($Vm.MAC)))
+ if($MacList.Contains(($Vm.MAC)))
  {
      "we found a dup" 
      $vm.VmName +  " " + $vm.MAC
-     $ageList[$vm.MAC] + " " + $vm.MAC
+     $MacList[$vm.MAC] + " " + $vm.MAC
 
  }  
  else{  
 $key = $VM.MAC
 $value = $VM.VmName
-$ageList.add( $key, $value )
+$MacList.add( $key, $value )
  }
 
 }
