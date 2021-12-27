@@ -3,7 +3,7 @@
 # Change Mac Addrres from dynamic to staic in Virtual Machine Manager
  # $VMS = Get-SCVirtualMachine | Select -ExpandProperty VirtualNetworkAdapters | select-object Name, MACAddress  #| Where { $_.MACAddress -like "*1C:95"}+
  $NameList=’vm1’,’vm2’,’vm3’,’vm4’,’vm5’,’vm6’,’vm7’
- $MacAdr ='123','123','654','111111','11451','111', '12345'
+ $MacAdr ='124','123','654','111111','11451','111', '12345'
  $vminfo = @()
  $VMs = @()
  $i = 0
@@ -40,7 +40,9 @@ foreach ($item in  $VMWithDupMac) {
 }
 $VMWithDupMac += $TempValuesForMACAddressInHash
 
-$VMWithDupMac | Sort-Object MAC | Select-Object vmName,MAC -Unique
+$VMWithDupMac.Count -gt 0 ? ($VMWithDupMac | Sort-Object MAC | Select-Object vmName,MAC -Unique) : "No dups found"
+#if running powershell 5 do this 
+#$VMWithDupMac | Sort-Object MAC | Select-Object vmName,MAC -Unique
 
 
 
