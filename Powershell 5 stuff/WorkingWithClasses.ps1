@@ -14,16 +14,14 @@ class Wallet
 
 } 
 
-
-
+$danWallet2 = @()
 $danWallet = [Wallet]::new()
-
-$danWallet.nameOnID = 'Daniel Ocampo'
-$danWallet.CreditCard1Bank = 'First Bank of money'
-$danWallet.CreditCardBalance = 1234.5 
-$danWallet.DebitCardBank =  'First Bank Of money'
-$danWallet.DebitCardAvailFunds = 10000000000
+$danWallet.nameOnID = 'Daniel Ocampo234'
+$danWallet.CreditCard1Bank = 'First Bank of money234'
+$danWallet.CreditCardBalance = 1234.52 
+$danWallet.DebitCardBank =  'First Bank Of money234'
+$danWallet.DebitCardAvailFunds = 100000000
 $danWallet.cashOnHand = 112
-
+$danWallet2 += $danWallet
 
 $danWallet.SpendCash(10)
