@@ -86,11 +86,12 @@ class LinkedList {
         }
     }
 
-      get($index)
+     [psobject] get($index)
       {
         if ($index -lt 0 -or $index -ge $this.length)
         {
-            write-host "Out Of range"
+            $temp = "Out Of range"
+            write-host 
         }
       
         else
@@ -103,12 +104,20 @@ class LinkedList {
             $i++
             }
 
-            Write-Host $temp.Value
+            
 
         }
-         
-        
+        return $temp 
       }
+
+        
+    setValue($index, $value )
+    {
+        $temp = $this.get($index)
+        $temp.value = $value
+    }
+
+
 }
 
 $myLinkList = [LinkedList]::new(12)
@@ -133,6 +142,10 @@ $myLinkList.popFirst()
 write-Host "NewList:"
 $myLinkList.PrintList()
 write-host "get"
-$myLinkList.get(2)
+$myLinkList.get(2).Value
+write-Host "NewList:"
+$myLinkList.PrintList()
+write-host "Set Value based on index"
+$myLinkList.setValue(1,1)
 write-Host "NewList:"
 $myLinkList.PrintList()
