@@ -189,6 +189,7 @@ class LinkedList {
         $temp.next = $node
         $this.length += 1 
         $this.head
+        return $this.head
     }
 
     [psobject]remove($index)
