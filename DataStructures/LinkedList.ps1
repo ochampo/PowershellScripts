@@ -23,71 +23,121 @@ class LinkedList {
        $this.tail = $node
        $this.length = 1 
     }
-
-   PrintList()
+    
+     [bool] IsEmpty($node)
     {
-        $temp = $this.head
-        while( $null -ne $temp.value) 
+        if ($this.length -eq 0 -or $null-eq $this.head )
         {
-            Write-Host ($temp.value)
-            $temp = $temp.next
+            $this.head = $node
+            $this.tail = $node
+            $this.length += 1
+            return $true
         }
 
+        else
+        { 
+           return $false
+        }
         
-     }
+    }
+    [bool] IsEmpty()
+    {
+        if ($this.length -eq 0 -or $null-eq $this.head )
+        {
+            $this.head = $null
+            $this.tail = $null
+            return $true
+        }
+
+        else
+        { 
+           return $false
+        }
+        
+    }
+
+   
 
      append([int] $value)
      {
-         $node = [Node]::new($value)
+        $node = [Node]::new($value)
+        $status = $this.IsEmpty($node)    
+        if( $status -eq $false)
+         {        
         
          $this.tail.next = $node
          $this.tail = $node
          $this.length += 1
+         }
         
     }
 
-    [int]pop()
+   [psobject] pop()
     {
+        $status = $this.IsEmpty()
         
-        $temp = $this.head
-        $pre = $this.head
-        while($temp.next)
+        if($false-eq $status)
         {
+         $temp = $this.head
+         $pre = $this.head
+         while($temp.next)
+         {
             $pre = $temp
             $temp = $temp.next
+         }
+         $this.tail = $pre 
+         $this.tail.next = $null
+         $this.length -= 1
+         $this.IsEmpty()
+         return $temp.value
+        } 
+        else {
+          return $null
         }
         
-        $this.tail = $pre 
-        $this.tail.next = $null
-        $this.length -= 1
-        return $temp.value
     }
 
-    popFirst()
-    {
-     $temp =  $this.head
-     $this.head = $this.head.next
-     $temp.next = $null
-     $this.length -= 1
-    }
 
     prePend($value)
-    {
+    {       
        $node = [Node]::new($value)
-       $node.next =  $this.head
-       $this.head = $node
-       $this.length += 1
-        write-host $node.value
-    }
 
-    IsEmptyStack()
-    {
-        if ($this.length -eq 0 )
+       $node = [Node]::new($value)
+       $status = $this.IsEmpty($node)    
+       if( $status -eq $false)
         {
-            $this.head = new_node
-            $this.tail = new_node
+            $node.next =  $this.head
+            $this.head = $node
+            $this.length += 1      
         }
     }
+
+
+
+
+    [psobject] popFirst()
+    {
+      if ($this.IsEmpty()) 
+      {
+         return $this.head
+      }
+     else 
+       {
+           ($this.IsEmpty())
+           $temp =  $this.head
+           $this.head = $this.head.next
+           $temp.next = $null
+           $this.length -= 1
+           $this.IsEmpty()
+           return $temp
+        
+        }
+     
+    }
+
+   
+
+ 
 
      [psobject] get($index)
       {
@@ -118,8 +168,21 @@ class LinkedList {
         $temp.value = $value
     }
 
-    insert($index, $value)
+    [psobject] insert($index, $value)
     {
+        # if ($index -lt 0 -or $index -ge $this.length)
+        # {
+        #     return $null
+        # }
+        # if($index == 0 )
+        # {
+        #    return $this.append($value)
+        # }
+        # if($index == $this.length )
+        # {
+
+        # }
+        
         $node = [Node]::new($value)
         $temp = $this.get($index -1)
         $node.next = $temp.next
@@ -150,17 +213,25 @@ class LinkedList {
      for( $i = 0; $i -lt $this.length; $i++) 
      {
          $after  =  $temp.next
-         $temp.next = $before
+         $temp.next = $before 
          $before = $temp
          $temp = $after
-
-     }
-
-    
-
-    
+             
+     }  
+        
     }
+    PrintList()
+    {
+        $temp = $this.head
+        while( $null -ne $temp.value) 
+        {
+            Write-Host ($temp.value)
+            $temp = $temp.next
+        }
 
+        
+     }
+  
 }
 
  $myLinkList = [LinkedList]::new(0)
@@ -169,11 +240,13 @@ class LinkedList {
  $myLinkList.append(3)
  $myLinkList.append(4)
  $myLinkList.append(5)
+ $myLinkList.prePend(-1)
+ $myLinkList.pop()
+ $myLinkList.pop()
+ $myLinkList.pop()
  $myLinkList.PrintList()
- Write-Host "test rev"
- $myLinkList.reverseLinkedList()
- $myLinkList.PrintList()
-
+ $myLinkList.pop()
+ $myLinkList.prePend(-2)
 # $myLinkList = [LinkedList]::new(12)
 # $myLinkList.append(15)
 # $myLinkList.append(54)
