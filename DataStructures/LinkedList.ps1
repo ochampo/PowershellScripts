@@ -58,7 +58,7 @@ class LinkedList {
 
    
 
-     append([int] $value)
+     [psobject] append([int] $value)
      {
         $node = [Node]::new($value)
         $status = $this.IsEmpty($node)    
@@ -69,7 +69,7 @@ class LinkedList {
          $this.tail = $node
          $this.length += 1
          }
-        
+        return $node
     }
 
    [psobject] pop()
@@ -98,7 +98,7 @@ class LinkedList {
     }
 
 
-    prePend($value)
+    [psobject]prePend($value)
     {       
        $node = [Node]::new($value)
 
@@ -110,6 +110,8 @@ class LinkedList {
             $this.head = $node
             $this.length += 1      
         }
+
+        return $node
     }
 
 
@@ -144,9 +146,8 @@ class LinkedList {
         if ($index -lt 0 -or $index -ge $this.length)
         {
             $temp = "Out Of range"
-            write-host 
+            
         }
-      
         else
         {
             $temp = $this.head
@@ -170,18 +171,19 @@ class LinkedList {
 
     [psobject] insert($index, $value)
     {
-        # if ($index -lt 0 -or $index -ge $this.length)
-        # {
-        #     return $null
-        # }
-        # if($index == 0 )
-        # {
-        #    return $this.append($value)
-        # }
-        # if($index == $this.length )
-        # {
-
-        # }
+        if (($index -le 0) -or ($index -gt $this.length))
+        {
+            Write-Host (" out of bounce " + $this.length)
+            return $null
+        }
+        if($index -eq 0 )
+        {
+           return $this.prePend($value)
+        }
+        if($index -eq $this.length )
+        {
+          return $this.append($value)
+        }
         
         $node = [Node]::new($value)
         $temp = $this.get($index -1)
@@ -189,7 +191,8 @@ class LinkedList {
         $temp.next = $node
         $this.length += 1 
         $this.head
-        return $this.head
+
+        return $node
     }
 
     [psobject]remove($index)
@@ -236,18 +239,18 @@ class LinkedList {
 }
 
  $myLinkList = [LinkedList]::new(0)
- $myLinkList.append(1)
- $myLinkList.append(2)
- $myLinkList.append(3)
- $myLinkList.append(4)
- $myLinkList.append(5)
- $myLinkList.prePend(-1)
- $myLinkList.pop()
- $myLinkList.pop()
- $myLinkList.pop()
+ $myLinkList.append(1).value
+ $myLinkList.append(2).value
+ $myLinkList.append(3).value
+ $myLinkList.append(4).value
+ $myLinkList.append(5).value
+ $myLinkList.prePend(-1).value
+ $myLinkList.prePend(-2).value
+ $myLinkList.insert(8,12).value
+
+
  $myLinkList.PrintList()
- $myLinkList.pop()
- $myLinkList.prePend(-2)
+
 # $myLinkList = [LinkedList]::new(12)
 # $myLinkList.append(15)
 # $myLinkList.append(54)
