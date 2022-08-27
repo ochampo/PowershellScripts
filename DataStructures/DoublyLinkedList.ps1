@@ -13,20 +13,23 @@ Node($value)
 
 }
 
-class DoublyLinkedList{
 
-    [psobject] append([int] $value)
+class DoublyLinkedList{
+    
+    $newNode = [Node]::new($value)
+    $head = $newNode
+    $tail = $newNode
+    $length = 1
+
+    [void] PrintList()
     {
-       $node = [Node]::new($value)
-       $status = $this.IsEmpty($node)    
-       if( $status -eq $false)
-        {        
-       
-        $this.tail.next = $node
-        $this.tail = $node
-        $this.length += 1
+        $temp = $this.head
+        while($null -ne $temp)
+        {
+            write-output ($temp.value)
+            $temp = $temp.next
         }
-       return $node
-   }
+
+    }
 
 }
