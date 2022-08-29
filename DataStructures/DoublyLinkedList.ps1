@@ -54,6 +54,20 @@ class DoublyLinkedList{
 
         $this.length += 1
     }
+    [void] pop()
+    {
+        if($this.length -eq 0 )
+        {
+            Write-host "empty Linked List "
+        }
+        else 
+        {
+         $temp = $this.tail
+         $this.tail = $this.tail.prev
+         $temp.prev = $null
+         $this.length -= 1
+        }
+    }
 
 }
 
