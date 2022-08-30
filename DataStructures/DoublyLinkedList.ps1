@@ -76,13 +76,37 @@ class DoublyLinkedList{
          $this.length -= 1
          
         }
+
+        
     }
+    [void] Prepend($value)
+       {
+        $node = [Node]::new($value)
+       if($this.length -eq 0)
+       { 
+       $this.head = $node
+       $this.tail = $node
+       $this.length = 1
+       }
+       else 
+       { 
+        $node.next = $this.head
+        $this.head.prev = $node
+        $this.head = $node
+       }
+       $this.length += 1
+
+
+       }
 
 }
 
 $doublyLinkedList = [DoublyLinkedList]::new(10)
 $doublyLinkedList.append(11)
 $doublyLinkedList.append(20)
+$doublyLinkedList.prepend(1)
+$doublyLinkedList.prepend(2)
+$doublyLinkedList.prepend(3)
 $doublyLinkedList.pop()
 
 $doublyLinkedList.PrintList()
