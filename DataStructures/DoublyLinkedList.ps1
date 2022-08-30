@@ -60,12 +60,21 @@ class DoublyLinkedList{
         {
             Write-host "empty Linked List "
         }
+        $temp = $this.tail
+        if($this.length -eq 1 )
+        {
+            Write-host ($temp.value.ToString() + " popping this value")
+            $this.head = $null
+            $this.tail = $null
+            
+        }
         else 
         {
-         $temp = $this.tail
+         Write-host ($temp.value.ToString() + " popping this value")          
          $this.tail = $this.tail.prev
-         $temp.prev = $null
+         $temp.prev.next = $null
          $this.length -= 1
+         
         }
     }
 
@@ -73,5 +82,7 @@ class DoublyLinkedList{
 
 $doublyLinkedList = [DoublyLinkedList]::new(10)
 $doublyLinkedList.append(11)
+$doublyLinkedList.append(20)
+$doublyLinkedList.pop()
 
 $doublyLinkedList.PrintList()
