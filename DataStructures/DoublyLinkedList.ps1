@@ -59,6 +59,7 @@ class DoublyLinkedList{
         if($this.length -eq 0 )
         {
             Write-host "empty Linked List "
+            break;
         }
         $temp = $this.tail
         if($this.length -eq 1 )
@@ -100,26 +101,31 @@ class DoublyLinkedList{
 
        [void] popFirst()
        {
+        $this.length
+        if ($this.length -eq 0) {
+          Write-Host  "unable to pop empty list"
+          break;
+        }
         $temp = $this.head
         if($this.length -eq 1  )
         {
+            
             $this.head = $null
             $this.tail = $null
-            $this.length =-1
+            $this.length -= 1      
 
-        }
-        elseif ($this.length -eq 0) {
-            "unable to pop empty list"
-        }
+        }        
         else {
              
             $this.head = $this.head.next
             $this.head.prev = $null
             $temp.next = $null
-            $this.length =-1
+            $this.length -= 1    
 
         }
-       }
+        
+       
+    }
 
 }
 
@@ -130,5 +136,7 @@ $doublyLinkedList.prepend(1)
 $doublyLinkedList.prepend(2)
 $doublyLinkedList.prepend(3)
 $doublyLinkedList.pop()
+$doublyLinkedList.popFirst()
+
 
 $doublyLinkedList.PrintList()
