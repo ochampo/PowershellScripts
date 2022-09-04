@@ -95,8 +95,30 @@ class DoublyLinkedList{
         $this.head = $node
        }
        $this.length += 1
+       }
 
 
+       [void] popFirst()
+       {
+        $temp = $this.head
+        if($this.length -eq 1  )
+        {
+            $this.head = $null
+            $this.tail = $null
+            $this.length =-1
+
+        }
+        elseif ($this.length -eq 0) {
+            "unable to pop empty list"
+        }
+        else {
+             
+            $this.head = $this.head.next
+            $this.head.prev = $null
+            $temp.next = $null
+            $this.length =-1
+
+        }
        }
 
 }
