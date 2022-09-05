@@ -127,6 +127,16 @@ class DoublyLinkedList{
        
     }
 
+   [void] Get($index)
+   {
+    if($index -lt 0 -or $index -gt $this.length)
+    {
+        write-host "index out of range"
+    }
+
+   }
+
+
 }
 
 $doublyLinkedList = [DoublyLinkedList]::new(10)
