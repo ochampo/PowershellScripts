@@ -127,12 +127,25 @@ class DoublyLinkedList{
        
     }
 
-   [void] Get($index)
+   [Node] Get($index)
    {
+    $temp = $this.head
     if($index -lt 0 -or $index -gt $this.length)
     {
         write-host "index out of range"
     }
+    if($index -lt $this.length/2)
+    {
+        
+        for($i =0;$i -lt $index; $i++)
+        {
+            $temp = $temp.next
+        }
+
+
+    }
+
+    return $temp
 
    }
 
@@ -147,6 +160,6 @@ $doublyLinkedList.prepend(2)
 $doublyLinkedList.prepend(3)
 $doublyLinkedList.pop()
 $doublyLinkedList.popFirst()
-
+$doublyLinkedList.Get(1)
 
 $doublyLinkedList.PrintList()
