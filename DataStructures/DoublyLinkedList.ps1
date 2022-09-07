@@ -133,17 +133,33 @@ class DoublyLinkedList{
     if($index -lt 0 -or $index -gt $this.length)
     {
         write-host "index out of range"
+        return $null
     }
     if($index -lt $this.length/2)
     {
         
-        for($i =0;$i -lt $index; $i++)
+        for($i=0;$i -lt $index; $i++)
         {
             $temp = $temp.next
         }
-
-
     }
+    else{
+        
+        $temp = $this.tail
+        for($i=$this.length-1;$index -le $i  ; $i--)
+        {
+            $temp = $temp.prev
+        }
+        
+    }
+
+    #  if length is 7
+    # user wants index 4
+    #assign temp to tail and go to prev node
+    #if the length = index than stop, because that's the index we want. 
+    # -1 6 
+    # -1 5
+    # -1 4 
 
     return $temp
 
@@ -152,14 +168,31 @@ class DoublyLinkedList{
 
 }
 
-$doublyLinkedList = [DoublyLinkedList]::new(10)
-$doublyLinkedList.append(11)
-$doublyLinkedList.append(20)
-$doublyLinkedList.prepend(1)
-$doublyLinkedList.prepend(2)
-$doublyLinkedList.prepend(3)
-$doublyLinkedList.pop()
-$doublyLinkedList.popFirst()
+$doublyLinkedList = [DoublyLinkedList]::new(1)
+ $doublyLinkedList.append(2)
+# $doublyLinkedList.append(20)
+# $doublyLinkedList.prepend(1)
+# $doublyLinkedList.prepend(2)
+# # $doublyLinkedList.prepend(3)
+# # $doublyLinkedList.prepend(3)
+$doublyLinkedList.append(3)
+$doublyLinkedList.append(4)
+$doublyLinkedList.append(5)
+$doublyLinkedList.append(6)
+$doublyLinkedList.append(7)
+$doublyLinkedList.append(8)
+# $doublyLinkedList.pop()
+# $doublyLinkedList.popFirst()
 $doublyLinkedList.Get(1)
+$doublyLinkedList.Get(-1)
+$doublyLinkedList.length
+$doublyLinkedList.Get(8)
+$doublyLinkedList.Get(7)
+$doublyLinkedList.Get(6)
+
+$doublyLinkedList.Get(0)
+$doublyLinkedList.Get(1)
+$doublyLinkedList.Get(2)
+
 
 $doublyLinkedList.PrintList()
