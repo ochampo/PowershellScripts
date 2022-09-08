@@ -146,8 +146,9 @@ class DoublyLinkedList{
     else{
         
         $temp = $this.tail
-        for($i=$this.length-1;$index -le $i  ; $i--)
-        {
+        $i = $this.Length-1
+        while( $i -ne $index)
+        {   $i--;
             $temp = $temp.prev
         }
         
@@ -164,17 +165,28 @@ class DoublyLinkedList{
     return $temp
 
    }
+   [void] set($index, $value)
+   {
+    $temp = $this.head
+
+    if($this.length -lt $index)
+    {
+       write-host "index out of range consider append method"
+    }
+    else 
+    {
+       [node] $nodeInfo = $this.Get($index)
+
+      $nodeInfo.value = $value
+    }
+
+   }
 
 
 }
-
-$doublyLinkedList = [DoublyLinkedList]::new(1)
- $doublyLinkedList.append(2)
-# $doublyLinkedList.append(20)
-# $doublyLinkedList.prepend(1)
-# $doublyLinkedList.prepend(2)
-# # $doublyLinkedList.prepend(3)
-# # $doublyLinkedList.prepend(3)
+$doublyLinkedList = [DoublyLinkedList]::new(0)
+$doublyLinkedList.append(1)
+$doublyLinkedList.append(2)
 $doublyLinkedList.append(3)
 $doublyLinkedList.append(4)
 $doublyLinkedList.append(5)
@@ -183,16 +195,29 @@ $doublyLinkedList.append(7)
 $doublyLinkedList.append(8)
 # $doublyLinkedList.pop()
 # $doublyLinkedList.popFirst()
-$doublyLinkedList.Get(1)
-$doublyLinkedList.Get(-1)
-$doublyLinkedList.length
-$doublyLinkedList.Get(8)
-$doublyLinkedList.Get(7)
-$doublyLinkedList.Get(6)
 
 $doublyLinkedList.Get(0)
 $doublyLinkedList.Get(1)
 $doublyLinkedList.Get(2)
+$doublyLinkedList.Get(3)
+$doublyLinkedList.Get(4)
+$doublyLinkedList.Get(5)
+
+
+$doublyLinkedList.Get(6)
+$doublyLinkedList.Get(7)
+$doublyLinkedList.Get(8)
+
+$doublyLinkedList.Set(8, -8)
+$doublyLinkedList.Set(7, -7)
+$doublyLinkedList.Set(6, -6)
+$doublyLinkedList.Set(5, -5)
+$doublyLinkedList.Set(4, -4)
+$doublyLinkedList.Set(3, -3)
+$doublyLinkedList.Set(2, -2)
+$doublyLinkedList.Set(1, -1)
+$doublyLinkedList.Set(0, 0)
+
 
 
 $doublyLinkedList.PrintList()
