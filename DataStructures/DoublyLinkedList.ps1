@@ -167,7 +167,7 @@ class DoublyLinkedList{
    }
    [void] set($index, $value)
    {
-    $temp = $this.head
+    
 
     if($this.length -lt $index)
     {
@@ -179,6 +179,41 @@ class DoublyLinkedList{
 
       $nodeInfo.value = $value
     }
+
+   }
+
+   [void] insert($index,$value)
+   {
+    if($index -lt 0 -or $index -gt $this.length)
+    {
+        write-host "index out of range"
+        
+    }
+    if($index -eq 0)
+    {
+        $this.Prepend($value)
+    }
+    if($index -eq $this.length)
+    {
+        $this.append($value)
+    }
+    else 
+    {
+     $node = [Node]::new($value)
+     $before = $this.Get($index-1)
+     $after = $before.next
+   
+
+    $node.prev = $before
+    $node.next = $after
+    
+    $before.next = $node
+    $after.prev = $node
+
+    $this.length +=1
+
+    }
+
 
    }
 
@@ -217,6 +252,9 @@ $doublyLinkedList.Set(3, -3)
 $doublyLinkedList.Set(2, -2)
 $doublyLinkedList.Set(1, -1)
 $doublyLinkedList.Set(0, 0)
+
+
+$doublyLinkedList.insert(2,10)
 
 
 
