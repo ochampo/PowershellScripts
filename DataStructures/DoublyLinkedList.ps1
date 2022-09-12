@@ -218,6 +218,35 @@ class DoublyLinkedList{
    }
 
 
+   [void] Remove($index)
+   {
+    if($index -lt 0 -or $index -gt $this.length)
+    {
+        write-host "index out of range"
+        break;
+        
+    }
+    if($index -eq 0)
+    {
+        $this.popFirst()
+    }
+    if($index -eq $this.length)
+    {
+        $this.pop()
+    }
+    else {
+        $temp = $this.Get($index)
+       $temp.next.prev = $temp.prev
+       $temp.prev.next = $temp.next
+       $temp.next = $null
+       $temp.prev = $null
+       
+    }
+
+    $this.length -= 1
+  }
+
+
 }
 $doublyLinkedList = [DoublyLinkedList]::new(0)
 $doublyLinkedList.append(1)
@@ -252,6 +281,11 @@ $doublyLinkedList.Set(3, -3)
 $doublyLinkedList.Set(2, -2)
 $doublyLinkedList.Set(1, -1)
 $doublyLinkedList.Set(0, 0)
+
+$doublyLinkedList.Remove(5)
+$doublyLinkedList.Remove(6)
+$doublyLinkedList.Remove(7)
+$doublyLinkedList.Remove(8)
 
 
 $doublyLinkedList.insert(2,10)
