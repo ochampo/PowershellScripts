@@ -48,7 +48,22 @@ class Stack
             $temp = $temp.next
             
         }
+    }
 
+    [void] Pop()
+    {
+        if($this.height -eq 0)
+        {
+            Write-Host "Nothing to pop"
+        }
+        else 
+        {
+            $temp = $this.top
+            Write-Host $temp.value
+            $this.top = $this.top.next
+            $temp.next = $null
+            $this.height -= 1
+        }
 
     }
 
@@ -61,5 +76,9 @@ $stack.push(1)
 $stack.push(2)
 $stack.push(3)
 $stack.push(4)
-$stack.push(5)
-$stack.PrintStack()
+$stack.Pop()
+$stack.Pop()
+$stack.Pop()
+$stack.Pop()
+$stack.Pop()
+$stack.Pop()
