@@ -8,7 +8,7 @@ $logNames = 'Application','System','Windows PowerShell','Microsoft-Windows-Store
 $logEntries.Count
 
 $logEntries += $logNames | ForEach-Object -Parallel {
-    Get-WinEvent -LogName $_ -MaxEvents 10000
+    Get-WinEvent -LogName $_ -MaxEvents 100000
 } -ThrottleLimit 5
 
 $x = 0
