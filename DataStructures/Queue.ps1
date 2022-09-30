@@ -35,3 +35,8 @@ class Queue{
   }
 
 }
+
+
+$queue = [Queue]:: new(1)
+
+$queue.printQueue()
