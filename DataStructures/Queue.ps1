@@ -33,6 +33,23 @@ class Queue{
       $temp = $temp.next
     }
   }
+  [void] Enqueue($value)
+  {
+     $node = [Node]::new($value)
+     if($null -eq $this.first)
+     {
+      $this.first = $null
+      $this.last = $null
+     }
+     else 
+     {
+      $this.last.next = $node
+      $this.last = $node
+     }
+
+     $this.length += 1 
+
+  }
 
 }
 
