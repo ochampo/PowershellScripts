@@ -51,7 +51,7 @@ class Queue{
 
   }
 
-  [void] Dequeue($value)
+  [void] Dequeue()
   {
     if($this.length -eq 0)
     {
@@ -79,6 +79,11 @@ class Queue{
 
 
 $queue = [Queue]:: new(1)
+$queue.Enqueue(2)
+$queue.Enqueue(3)
+
+$queue.Dequeue()
+
 
 $queue.printQueue()
 ##logic for enqueue 
