@@ -38,8 +38,8 @@ class Queue{
      $node = [Node]::new($value)
      if($null -eq $this.first)
      {
-      $this.first = $null
-      $this.last = $null
+      $this.first = $node
+      $this.last = $node
      }
      else 
      {
@@ -51,9 +51,59 @@ class Queue{
 
   }
 
+  [void] Dequeue($value)
+  {
+    if($this.length -eq 0)
+    {
+      "empty already"
+    }
+    if($this.length -eq 1) 
+    {
+      $this.first = $null
+      $this.last = $null
+    }
+    else 
+    {
+      $temp = $this.first
+      $this.first = $this.first.next 
+      $temp.next = $null
+    }
+
+
+  }
+
+
+
+
 }
 
 
 $queue = [Queue]:: new(1)
 
 $queue.printQueue()
+##logic for enqueue 
+<# First              Last 
+(1,node)=>(2,node)=>(3,node)=>null
+
+temp = First (1,node)
+temp-------> (1,node)
+First---------^
+____________________________
+First = temp.next
+temp = null 
+First --------> (2,node)
+temp --------> Null
+First      LAST       
+(2,node)=>(3,node)=>null
+
+      
+      $temp = $this.first
+      $this.first = $this.first.next 
+      $temp.next = $null
+
+
+#>
+
+
+
+
