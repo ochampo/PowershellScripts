@@ -26,11 +26,23 @@ class Node
  {
     $root = $null
 
+    [void] Insert($value)
+    {
+      $node = [Node]:: new($value)
+      if($null -eq $this.root)
+      {
+         $this.root = $node
+      }
+    }
+
 }
 
 $tree = [BST]::new();
 
-$tree
+$tree.Insert(2)
+$tree.root.value
+$tree.left
+$tree.right
 
 
 
