@@ -26,13 +26,46 @@ class Node
  {
     $root = $null
 
-    [void] Insert($value)
+    [Node] Insert($value)
     {
+      
       $node = [Node]:: new($value)
       if($null -eq $this.root)
       {
          $this.root = $node
+         return $this.root
       }
+      $temp = $this.root
+      else 
+      {
+      while($true)
+      {
+         if($node.value -eq $temp.value)
+         {
+            return $node 
+         }
+         if($node.value -lt $temp.value)
+         {
+            if($null -eq $temp.left)
+            {
+               $temp.left = $node 
+               return $node
+            } 
+            $temp = $temp.left
+         }
+         else 
+         {
+            if ($null -eq $temp.right)
+            {
+               $temp.right = $node
+               return $node
+            }
+            $temp = $temp.right
+         }
+
+      }
+      }
+
     }
 
 }
@@ -40,6 +73,8 @@ class Node
 $tree = [BST]::new();
 
 $tree.Insert(2)
+$tree.Insert(1)
+$tree.Insert(3)
 $tree.root.value
 $tree.left
 $tree.right
