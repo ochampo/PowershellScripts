@@ -35,9 +35,9 @@ class Node
          $this.root = $node
          return $this.root
       }
-      $temp = $this.root
       else 
-      {
+         {
+      $temp = $this.root
       while($true)
       {
          if($node.value -eq $temp.value)
@@ -65,8 +65,9 @@ class Node
 
       }
       }
-
-    }
+   return Continue;
+    
+   }
 
 }
 
@@ -76,8 +77,8 @@ $tree.Insert(2)
 $tree.Insert(1)
 $tree.Insert(3)
 $tree.root.value
-$tree.left
-$tree.right
+$tree.root.left.value
+$tree.root.right.value
 
 
 
