@@ -28,7 +28,6 @@ class Node
 
     [Node] Insert($value)
     {
-      
       $node = [Node]:: new($value)
       if($null -eq $this.root)
       {
@@ -67,7 +66,33 @@ class Node
       }
    return Continue;
     
-   }
+    }
+
+    [bool] Contains($value)
+    {
+      if($this.root -eq $null)
+      {
+         return $false;
+      }
+      $temp = $this.root
+      while($temp -ne $null)
+      {
+         if($value -lt $temp.value)
+         {
+            $temp = $temp.left
+         }
+         elseif ($value -gt $temp.value) {
+            $temp = $temp.right
+         }
+         else 
+         {
+            return $true 
+         }
+         
+      }
+      return $false;
+
+    }
 
 }
 
@@ -76,9 +101,14 @@ $tree = [BST]::new();
 $tree.Insert(2)
 $tree.Insert(1)
 $tree.Insert(3)
-$tree.root.value
-$tree.root.left.value
-$tree.root.right.value
+$tree.Insert(4)
+$tree.Insert(10)
+$tree.Insert(100)
+write-host "contains method test" $tree.Contains(80)
+Write-host "root" + $tree.root.value
+write-host "left " + $tree.root.left.value
+write-host "right " + $tree.root.right.value
+#$tree.root.right.right.right.right.value
 
 
 
