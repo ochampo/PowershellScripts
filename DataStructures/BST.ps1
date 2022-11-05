@@ -70,12 +70,12 @@ class Node
 
     [bool] Contains($value)
     {
-      if($this.root -eq $null)
+      if($null -eq $this.root)
       {
          return $false;
       }
       $temp = $this.root
-      while($temp -ne $null)
+      while($null -ne $temp)
       {
          if($value -lt $temp.value)
          {
