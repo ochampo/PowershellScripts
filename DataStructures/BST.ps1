@@ -91,8 +91,22 @@ class Node
          
       }
       return $false;
+    }
+
+
+    [Node] GetMinValue()
+    {
+      $temp = $this.root
+      
+      while($null -ne $temp.left)
+      {
+         $temp = $temp.left
+      }
+
+      return $temp 
 
     }
+
 
 }
 
@@ -104,10 +118,13 @@ $tree.Insert(3)
 $tree.Insert(4)
 $tree.Insert(10)
 $tree.Insert(100)
+Write-host "get min value " $tree.GetMinValue().value
 write-host "contains method test" $tree.Contains(80)
-Write-host "root" + $tree.root.value
-write-host "left " + $tree.root.left.value
-write-host "right " + $tree.root.right.value
+Write-host "root"  $tree.root.value
+write-host "left "  $tree.root.left.value
+write-host "right "  $tree.root.right.value
+
+
 #$tree.root.right.right.right.right.value
 
 
