@@ -110,7 +110,7 @@ class Node
 
 }
 
-$tree = [BST]::new();
+$tree = [BST]::new()
 
 $tree.Insert(2)
 $tree.Insert(1)
