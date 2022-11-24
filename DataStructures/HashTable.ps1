@@ -1,16 +1,30 @@
 class HashTable
 {
 $Size = 7
-$DataMap = [object[]]::new($this.Size)
+$DataMap = ,$null * 7
 
-[void] Hash($key)
+
+[int] Hash($key)
 {
     $myHash = 0
     
-    foreach ($letter in $key )
+    foreach ($letter in $key.ToCharArray())
     {
-       $myHash =  (($myHash + [byte][char](lett) *23 ) %  $this.DataMap)
+     $letter
+     $myHash =  (($myHash + ([byte][char]($letter)) *23 ) %  $this.DataMap.Count)
     }
+    return  $myHash
+}
+[void] SetMethod($key,$value)
+{
+    
+    $index = $this.Hash($key)
+    if($null -eq $this.DataMap[$index])
+    {
+        $this.DataMap[$index] = @()
+    }
+    $this.DataMap[$index] += [pscustomobject]@{Key=$key;Value=$value}
+
 }
 
 [void] PrintTable()
@@ -26,5 +40,10 @@ $DataMap = [object[]]::new($this.Size)
 
 
 $myHash = [HashTable]::new()
+$myHash.SetMethod('Dan',11)
+$myHash.SetMethod('data',110)
+$myHash.SetMethod('bolts',1400)
+$myHash.SetMethod('lumber',100)
+
 
 $myHash.PrintTable()
