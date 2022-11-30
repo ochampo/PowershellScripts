@@ -26,6 +26,22 @@ $DataMap = ,$null * 7
     $this.DataMap[$index] += [pscustomobject]@{Key=$key;Value=$value}
 
 }
+[void] GetKeys()
+{
+    $allkeys = @()
+    for($i=0;$i -lt $this.DataMap.length; $i++ )
+        {
+            if($null -ne  $this.DataMap[$i] )
+            {
+                Write-Host $i  ":" $this.DataMap[$i].length 
+                for($j=0;$j -lt $this.DataMap[$i].length; $j++)
+                {
+                    $allkeys += $this.DataMap[$i][$j].Key
+                }
+            }       
+        }
+        Write-Host $allkeys
+}
 [void] GetMethod($key)
 {
     $index = $this.Hash($key)
@@ -78,5 +94,5 @@ $myHash.GetMethod('cool')
 $myHash.GetMethod('homer')
 $myHash.GetMethod('water')
 
-
+$myHash.GetKeys()
 $myHash.PrintTable()
