@@ -23,3 +23,9 @@ Write-Output 'First' && Write-Output 'Second'
 
 
 
+$arr = 1..100000
+$arr | foreach-Object -Parallel { 
+  $_ 
+  
+} -ThrottleLimit 8
+
